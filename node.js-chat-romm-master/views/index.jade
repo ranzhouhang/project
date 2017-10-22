@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+      title 聊天室
+  body
+      h1  聊天室
+
+
+script(src='https://cdn.socket.io/socket.io-1.4.5.js')
+
+script.
+      var socket = io.connect("http://localhost:3000");
+      //发送消息
+      socket.emit("join","mike",function(data){
+      console.log(data);
+      });
+
+      //监听
+      socket.on("login",function(data){
+      console.log(data);
+      });
+
+      socket.on("user_joined",function(data){
+      console.log(data);
+      });
+
+      socket.on("user_left",function(data){
+      console.log(data);
+      });
+
+      //修改昵称
+      function change_name(name){
+        socket.emit('change_name',name,function(data){
+          console.log(data);
+        });
+      }
+
+      //监听修改昵称后返回的消息
+      socket.on('name_changed',function(data){
+        console.log(data);
+      });
+
+      //发送消息
+      function send_msg(msg){
+        socket.emit('send_msg',msg,function(data){
+          console.log(data);
+        });
+      }
+
+      //监听消息
+      socket.on('msg_sent',function(data){
+        console.log(data);
+      });
