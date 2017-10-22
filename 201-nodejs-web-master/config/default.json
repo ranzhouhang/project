@@ -1,0 +1,4 @@
+{
+    "httpPort": 80,
+    "mongoUri": "mongo:27017"
+}
